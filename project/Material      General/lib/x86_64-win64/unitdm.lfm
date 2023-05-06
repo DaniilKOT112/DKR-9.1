@@ -1,0 +1,305 @@
+object dm: Tdm
+  OnCreate = DataModuleCreate
+  OldCreateOrder = False
+  Height = 341
+  HorizontalOffset = 828
+  VerticalOffset = 347
+  Width = 426
+  object IBdb: TIBDatabase
+    Connected = True
+    LoginPrompt = False
+    CreateIfNotExists = False
+    AllowStreamedConnected = True
+    DatabaseName = '127.0.0.1:C:\Users\seksi\Desktop\Pets_BD\PETS.FDB'
+    Params.Strings = (
+      'user_name=sysdba'
+      'password=sews12sews13'
+      'lc_ctype=UNICODE_FSS'
+    )
+    DefaultTransaction = IBtr
+    IdleTimer = 0
+    TraceFlags = []
+    UseDefaultSystemCodePage = False
+    Left = 376
+    Top = 40
+  end
+  object IBtr: TIBTransaction
+    TransactionName = '{CE909989-2D98-4E12-A0E8-B5ABDDF3BA09}'
+    Active = False
+    DefaultDatabase = IBdb
+    Left = 304
+    Top = 40
+  end
+  object IBPets: TIBTable
+    AllowAutoActivateTransaction = False
+    Database = IBdb
+    Transaction = IBtr
+    BufferChunks = 1000
+    CachedUpdates = False
+    DataSetCloseAction = dcDiscardChanges
+    EnableStatistics = False
+    SQLFiltered = False
+    GeneratorField.ApplyOnEvent = gaeOnNewRecord
+    MasterDetailDelay = 0
+    TableName = 'PETS'
+    Left = 224
+    Top = 40
+    object IBPetsPETS_ID: TIBIntegerField
+      DisplayLabel = 'ID Питомца'
+      FieldKind = fkData
+      FieldName = 'PETS_ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object IBPetsNICKNAME: TIBStringField
+      DisplayLabel = 'Кличка питомца'
+      FieldKind = fkData
+      FieldName = 'NICKNAME'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 25
+    end
+    object IBPetsCATEGORY: TIBIntegerField
+      DisplayLabel = 'Категория'
+      FieldKind = fkData
+      FieldName = 'CATEGORY'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object IBPetsWEIGHT: TIBBCDField
+      DisplayLabel = 'Вес'
+      FieldKind = fkData
+      FieldName = 'WEIGHT'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Precision = 18
+      Currency = False
+      MaxValue = 0
+      MinValue = 0
+      Size = 3
+    end
+    object IBPetsAGE: TIBIntegerField
+      DisplayLabel = 'Возраст'
+      FieldKind = fkData
+      FieldName = 'AGE'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object IBPetsDISEASE: TIBIntegerField
+      DisplayLabel = 'Диагноз'
+      FieldKind = fkData
+      FieldName = 'DISEASE'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object IBPetsOWNER: TIBIntegerField
+      DisplayLabel = 'Хозяин'
+      FieldKind = fkData
+      FieldName = 'OWNER'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+  end
+  object DtsPets: TDataSource
+    DataSet = IBPets
+    Left = 152
+    Top = 40
+  end
+  object IBCat: TIBTable
+    AllowAutoActivateTransaction = False
+    Database = IBdb
+    Transaction = IBtr
+    BufferChunks = 1000
+    CachedUpdates = False
+    DataSetCloseAction = dcDiscardChanges
+    EnableStatistics = False
+    SQLFiltered = False
+    GeneratorField.ApplyOnEvent = gaeOnNewRecord
+    MasterDetailDelay = 0
+    TableName = 'CATEGORY_PETS'
+    Left = 224
+    Top = 112
+    object IBCatID: TIBIntegerField
+      DisplayLabel = 'ID категории'
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object IBCatNAME_CATEGORY: TIBStringField
+      DisplayLabel = 'Категория питомца'
+      FieldKind = fkData
+      FieldName = 'NAME_CATEGORY'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 15
+    end
+    object IBCatPORODA: TIBStringField
+      DisplayLabel = 'Порода'
+      FieldKind = fkData
+      FieldName = 'PORODA'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 30
+    end
+  end
+  object DTSCat: TDataSource
+    DataSet = IBCat
+    Left = 152
+    Top = 112
+  end
+  object IBDiagnoz: TIBTable
+    AllowAutoActivateTransaction = False
+    Database = IBdb
+    Transaction = IBtr
+    BufferChunks = 1000
+    CachedUpdates = False
+    DataSetCloseAction = dcDiscardChanges
+    EnableStatistics = False
+    SQLFiltered = False
+    GeneratorField.ApplyOnEvent = gaeOnNewRecord
+    MasterDetailDelay = 0
+    TableName = 'DISEASE_PETS'
+    Left = 224
+    Top = 184
+    object IBDiagnozID: TIBIntegerField
+      DisplayLabel = 'Номер заболевания'
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object IBDiagnozNAME_DISEASE: TIBStringField
+      DisplayLabel = 'Название заболевания'
+      FieldKind = fkData
+      FieldName = 'NAME_DISEASE'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 25
+    end
+    object IBDiagnozOPISANIE: TIBStringField
+      DisplayLabel = 'Описание заболевания'
+      FieldKind = fkData
+      FieldName = 'OPISANIE'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 40
+    end
+  end
+  object DSDiagnoz: TDataSource
+    DataSet = IBDiagnoz
+    Left = 152
+    Top = 184
+  end
+  object IBHozain: TIBTable
+    AllowAutoActivateTransaction = False
+    Database = IBdb
+    Transaction = IBtr
+    BufferChunks = 1000
+    CachedUpdates = False
+    DataSetCloseAction = dcDiscardChanges
+    EnableStatistics = False
+    SQLFiltered = False
+    GeneratorField.ApplyOnEvent = gaeOnNewRecord
+    MasterDetailDelay = 0
+    TableName = 'OWNER_PETS'
+    Left = 224
+    Top = 254
+    object IBHozainID: TIBIntegerField
+      DisplayLabel = 'ID хозяина'
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object IBHozainFIO_OWNER: TIBStringField
+      DisplayLabel = 'ФИО хозяина'
+      FieldKind = fkData
+      FieldName = 'FIO_OWNER'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 35
+    end
+    object IBHozainPHONES_OWNER: TIBStringField
+      DisplayLabel = 'Телефон'
+      FieldKind = fkData
+      FieldName = 'PHONES_OWNER'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object IBHozainPASPORT_OWNER: TIBStringField
+      DisplayLabel = 'паспортные данные'
+      FieldKind = fkData
+      FieldName = 'PASPORT_OWNER'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object IBHozainDATA_R_OWNER: TDateField
+      DisplayLabel = 'Дата рождения'
+      FieldKind = fkData
+      FieldName = 'DATA_R_OWNER'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+  end
+  object DSHozain: TDataSource
+    DataSet = IBHozain
+    OnDataChange = DSHozainDataChange
+    Left = 152
+    Top = 254
+  end
+end
